@@ -5,7 +5,8 @@ import (
 	"net/http"
 )
 
-func start() {
+// Start call
+func Start() {
 	// Define routes
 	http.HandleFunc("/greet", greet)
 	http.HandleFunc("/customers", getAllCustomers)
