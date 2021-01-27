@@ -11,7 +11,7 @@ import (
 type Customer struct {
 	Name    string `json:"full_name" xml:"name" csv:"name"`
 	City    string `json:"city" xml:"city" csv:"city"`
-	Zipcode string `json:"zip_code" xml:"zipcode" csv:"zipcode"`
+	Zipcode string `json:"zip_code" xml:"xmlzipcode" csv:"csvzipcode"`
 }
 
 func greet(w http.ResponseWriter, r *http.Request) {
