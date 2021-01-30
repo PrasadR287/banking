@@ -13,3 +13,8 @@ curl -d "user=user1&pass=abcd" -X POST http://localhost:8000/customers
 # Kill process
 lsof -i :8000 <port number>
 kill -9 23020 <pid>
+
+# Hexagonal architecture
+# curl --header "Content-Type: application/json" http://localhost:8000/customers
+
+curl http://localhost:8000/customers
