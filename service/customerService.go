@@ -1,11 +1,14 @@
 package service
 
-import "github.com/PrasadR287/banking/domain"
+import (
+	"github.com/PrasadR287/banking/domain"
+	"github.com/PrasadR287/banking/errs"
+)
 
 // CustomerService interface
 type CustomerService interface {
 	GetAllCustomer() ([]domain.Customer, error)
-	GetCustomer(string) (*domain.Customer, error)
+	GetCustomer(string) (*domain.Customer, *errs.AppError)
 }
 
 // DefaultCustomerService class implements
@@ -18,7 +21,7 @@ func (s DefaultCustomerService) GetAllCustomer() ([]domain.Customer, error) {
 	return s.repo.FindAll()
 }
 
-func (s DefaultCustomerService) GetCustomer(id string) (*domain.Customer, error) {
+func (s DefaultCustomerService) GetCustomer(id string) (*domain.Customer, *errs.AppError) {
 	return s.repo.ByID(id)
 }
 
