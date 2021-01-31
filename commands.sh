@@ -18,3 +18,6 @@ kill -9 23020 <pid>
 # curl --header "Content-Type: application/json" http://localhost:8000/customers
 
 curl http://localhost:8000/customers
+curl http://localhost:8000/customers/2000
+url http://localhost:8000/customers/20
+url http://localhost:8000/customers/rrr
