@@ -19,5 +19,5 @@ kill -9 23020 <pid>
 
 curl http://localhost:8000/customers
 curl http://localhost:8000/customers/2000
-url http://localhost:8000/customers/20
+curl http://localhost:8000/customers/20
 curl http://localhost:8000/customers/rrr

@@ -3,7 +3,6 @@ package app
 import (
 	"encoding/json"
 	"encoding/xml"
-	"fmt"
 	"net/http"
 
 	"github.com/PrasadR287/banking/service"
@@ -11,11 +10,11 @@ import (
 )
 
 // Customer DTO - data transfer object
-type Customer struct {
-	Name    string `json:"full_name" xml:"name" csv:"name"`
-	City    string `json:"city" xml:"city" csv:"city"`
-	Zipcode string `json:"zip_code" xml:"xmlzipcode" csv:"csvzipcode"`
-}
+// type Customer struct {
+// 	Name    string `json:"full_name" xml:"name" csv:"name"`
+// 	City    string `json:"city" xml:"city" csv:"city"`
+// 	Zipcode string `json:"zip_code" xml:"xmlzipcode" csv:"csvzipcode"`
+// }
 
 // func greet(w http.ResponseWriter, r *http.Request) {
 // 	fmt.Fprint(w, "Hello World")
@@ -53,11 +52,17 @@ func (ch *CustomerHandlers) getCustomers(w http.ResponseWriter, r *http.Request)
 
 	customer, err := ch.service.GetCustomer(id)
 	if err != nil {
-		w.WriteHeader(err.Code)
-		fmt.Fprintf(w, err.Message)
+		writeResponse(w, err.Code, err.AsMessage())
 	} else {
-		w.Header().Add("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(customer)
+		writeResponse(w, http.StatusOK, customer)
+	}
+}
+
+func writeResponse(w http.ResponseWriter, code int, data interface{}) {
+	w.Header().Add("Content-Type", "application/json")
+	w.WriteHeader(code)
+	if err := json.NewEncoder(w).Encode(data); err != nil {
+		panic(err)
 	}
 }
 
