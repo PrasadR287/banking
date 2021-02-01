@@ -47,5 +47,5 @@ SERVER_PORT=8020 go run main.go
 # save env variable
 export SERVER_ADDRESS=localhost
 SERVER_PORT=8020 go run main.go 
-
-
+DB_USER=root DB_PASSWD=shrish287 DB_ADDR=localhost DB_PORT=3306 DB_NAME=banking SERVER_ADDRESS=localhost SERVER_PORT=8020 go run main.go
+curl http://localhost:8020/customers
