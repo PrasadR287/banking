@@ -2,7 +2,6 @@ package app
 
 import (
 	"encoding/json"
-	"encoding/xml"
 	"net/http"
 
 	"github.com/PrasadR287/banking/service"
@@ -31,18 +30,24 @@ func (ch *CustomerHandlers) getAllCustomers(w http.ResponseWriter, r *http.Reque
 	// 	{"Rob", "New Delhi", "110075"},
 	// }
 
-	customers, _ := ch.service.GetAllCustomer()
+	customers, err := ch.service.GetAllCustomer()
 
-	if r.Header.Get("Content-Type") == "application/xml" {
-		w.Header().Add("Content-Type", "application/xml")
-		xml.NewEncoder(w).Encode(customers)
-	} else if r.Header.Get("Content-Type") == "text/csv" {
-		// w.Header().Add("Content-Type", "text/csv")
-		// w1 := csv.NewWriter(os.Stdout)
-		// w1.WriteAll(customers)
+	// if r.Header.Get("Content-Type") == "application/xml" {
+	// 	w.Header().Add("Content-Type", "application/xml")
+	// 	xml.NewEncoder(w).Encode(customers)
+	// } else if r.Header.Get("Content-Type") == "text/csv" {
+	// 	// w.Header().Add("Content-Type", "text/csv")
+	// 	// w1 := csv.NewWriter(os.Stdout)
+	// 	// w1.WriteAll(customers)
+	// } else {
+	// 	w.Header().Add("Content-Type", "application/json")
+	// 	json.NewEncoder(w).Encode(customers)
+	// }
+
+	if err != nil {
+		writeResponse(w, err.Code, err.AsMessage())
 	} else {
-		w.Header().Add("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(customers)
+		writeResponse(w, http.StatusOK, customers)
 	}
 }
 
