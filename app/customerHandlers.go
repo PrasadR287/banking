@@ -30,7 +30,8 @@ func (ch *CustomerHandlers) getAllCustomers(w http.ResponseWriter, r *http.Reque
 	// 	{"Rob", "New Delhi", "110075"},
 	// }
 
-	customers, err := ch.service.GetAllCustomer()
+	status := r.URL.Query().Get("status")
+	customers, err := ch.service.GetAllCustomer(status)
 
 	// if r.Header.Get("Content-Type") == "application/xml" {
 	// 	w.Header().Add("Content-Type", "application/xml")

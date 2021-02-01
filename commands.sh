@@ -21,3 +21,9 @@ curl http://localhost:8000/customers
 curl http://localhost:8000/customers/2000
 curl http://localhost:8000/customers/20
 curl http://localhost:8000/customers/rrr
+
+
+# Assignment 2
+curl http://localhost:8000/customers
+curl "http://localhost:8000/customers?status=active"
+curl "http://localhost:8000/customers?status=inactive"
