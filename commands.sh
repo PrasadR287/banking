@@ -36,3 +36,16 @@ curl http://localhost:8000/customers/20
 
 # DTO
 curl http://localhost:8000/customers/2000
+
+
+# Application configuration
+SERVER_ADDRESS=localhost SERVER_PORT=8020 go run main.go
+curl http://localhost:8020/customers
+curl http://Donocalhost:8000/customers
+curl http://localhost:8000/customers
+SERVER_PORT=8020 go run main.go 
+# save env variable
+export SERVER_ADDRESS=localhost
+SERVER_PORT=8020 go run main.go 
+
+

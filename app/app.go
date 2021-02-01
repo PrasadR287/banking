@@ -1,16 +1,27 @@
 package app
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/PrasadR287/banking/domain"
 	"github.com/PrasadR287/banking/service"
 	"github.com/gorilla/mux"
 )
 
+func sanityCheck() {
+	if os.Getenv("SERVER_ADDRESS") == "" ||
+		os.Getenv("SERVER_PORT") == "" {
+		log.Fatal("Environment variable not defined...")
+	}
+}
+
 // Start call
 func Start() {
+
+	sanityCheck()
 
 	// mux := http.NewServeMux()
 	router := mux.NewRouter()
@@ -29,5 +40,7 @@ func Start() {
 	// router.HandleFunc("/customers/{customer_id:[0-9]+}", getCustomer).Methods(http.MethodGet)
 
 	// Starting server
-	log.Fatal(http.ListenAndServe("localhost:8000", router))
+	address := os.Getenv("SERVER_ADDRESS")
+	port := os.Getenv("SERVER_PORT")
+	log.Fatal(http.ListenAndServe(fmt.Sprintf("%s:%s", address, port), router))
 }
