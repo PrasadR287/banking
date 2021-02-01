@@ -27,3 +27,10 @@ curl http://localhost:8000/customers/rrr
 curl http://localhost:8000/customers
 curl "http://localhost:8000/customers?status=active"
 curl "http://localhost:8000/customers?status=inactive"
+
+
+# sqlx
+curl http://localhost:8000/customers
+curl http://localhost:8000/customers/2000
+curl http://localhost:8000/customers/20
+

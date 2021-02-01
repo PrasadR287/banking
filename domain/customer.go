@@ -4,11 +4,11 @@ import "github.com/PrasadR287/banking/errs"
 
 // Customer dto
 type Customer struct {
-	ID          string
+	ID          string `db:"customer_id"`
 	Name        string
 	City        string
 	Zipcode     string
-	DateOfBirth string
+	DateOfBirth string `db:"date_of_birth"`
 	Status      string
 }
 
