@@ -2,13 +2,14 @@ package service
 
 import (
 	"github.com/PrasadR287/banking/domain"
+	"github.com/PrasadR287/banking/dto"
 	"github.com/PrasadR287/banking/errs"
 )
 
 // CustomerService interface
 type CustomerService interface {
 	GetAllCustomer(string) ([]domain.Customer, *errs.AppError)
-	GetCustomer(string) (*domain.Customer, *errs.AppError)
+	GetCustomer(string) (*dto.CustomerResponse, *errs.AppError)
 }
 
 // DefaultCustomerService class implements
@@ -29,8 +30,13 @@ func (s DefaultCustomerService) GetAllCustomer(status string) ([]domain.Customer
 }
 
 // GetCustomer by id
-func (s DefaultCustomerService) GetCustomer(id string) (*domain.Customer, *errs.AppError) {
-	return s.repo.ByID(id)
+func (s DefaultCustomerService) GetCustomer(id string) (*dto.CustomerResponse, *errs.AppError) {
+	c, err := s.repo.ByID(id)
+	if err != nil {
+		return nil, err
+	}
+	response := c.ToDto()
+	return &response, nil
 }
 
 // NewCustomerService method

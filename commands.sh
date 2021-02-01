@@ -34,3 +34,5 @@ curl http://localhost:8000/customers
 curl http://localhost:8000/customers/2000
 curl http://localhost:8000/customers/20
 
+# DTO
+curl http://localhost:8000/customers/2000
