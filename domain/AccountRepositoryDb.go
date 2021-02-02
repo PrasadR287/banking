@@ -8,12 +8,11 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-// AccountRepositoryDb implments interface
 type AccountRepositoryDb struct {
 	client *sqlx.DB
 }
 
-func (d AccountRepositoryDb) save(a Account) (*Account, *errs.AppError) {
+func (d AccountRepositoryDb) Save(a Account) (*Account, *errs.AppError) {
 	sqlInsert := "INSERT INTO accounts (customer_id, opening_date, account_type, amount, status) values (?, ?, ?, ?, ?)"
 
 	result, err := d.client.Exec(sqlInsert, a.CustomerID, a.OpeningDate, a.AccountType, a.Amount, a.Status)
@@ -32,6 +31,6 @@ func (d AccountRepositoryDb) save(a Account) (*Account, *errs.AppError) {
 	return &a, nil
 }
 
-func NewAccountRepositoryDb(dbclient *sqlx.DB) AccountRepositoryDb {
-	return AccountRepositoryDb(dbclient)
+func NewAccountRepositoryDb123(dbClient *sqlx.DB) AccountRepositoryDb {
+	return AccountRepositoryDb{dbClient}
 }

@@ -1,6 +1,9 @@
 package domain
 
-import "github.com/PrasadR287/banking/errs"
+import (
+	"github.com/PrasadR287/banking/dto"
+	"github.com/PrasadR287/banking/errs"
+)
 
 // Account domain object
 type Account struct {
@@ -12,6 +15,10 @@ type Account struct {
 	Status      string
 }
 
+func (a Account) ToNewAccountResponseDto() dto.NewAccountResponse {
+	return dto.NewAccountResponse{a.AccountID}
+}
+
 type AccountRepository interface {
-	save(Account) (*Account, *errs.AppError)
+	Save(Account) (*Account, *errs.AppError)
 }
