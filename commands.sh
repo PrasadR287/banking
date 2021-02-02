@@ -56,3 +56,11 @@ DB_USER=root DB_PASSWD=shrish287 DB_ADDR=localhost DB_PORT=3306 DB_NAME=banking 
 curl --header "Content-Type: application/json" -X POST -d '{"account_type":"saving","amount":5000.23}' http://localhost:8020/customers/2000/account
 curl --header "Content-Type: application/json" -X POST -d '{"account_type":"saving","amount":1000.23}' http://localhost:8020/customers/2000/account
 
+
+# Making a transaction
+DB_USER=root DB_PASSWD=shrish287 DB_ADDR=localhost DB_PORT=3306 DB_NAME=banking SERVER_ADDRESS=localhost SERVER_PORT=8020 go run main.go
+curl --header "Content-Type: application/json" -X POST -d '{"transaction_type":"deposit","amount":5000.23}' http://localhost:8020/customers/2000/account/95474
+curl --header "Content-Type: application/json" -X POST -d '{"transaction_type":"depositaa","amount":5000.23}' http://localhost:8020/customers/2000/account/95474
+curl --header "Content-Type: application/json" -X POST -d '{"transaction_type":"deposit","amount":-5000.23}' http://localhost:8020/customers/2000/account/95474
+curl --header "Content-Type: application/json" -X POST -d '{"transaction_type":"withdrawal","amount":5000.23}' http://localhost:8020/customers/2000/account/95474
+
